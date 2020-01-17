@@ -9,9 +9,6 @@ import Analytics from './Components/Analytics'
 class App extends Component {
   
   render() {
-    let a = "asasasas"
-    console.log(a)
-
     return (
       <Router> 
         <div id='main-app'>
