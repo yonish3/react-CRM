@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import { observer, inject } from 'mobx-react'
 
 @inject ('clients')
+//@observer
 class Client extends Component {
 
     popup = () => {
-        this.props.togglePopup(this.props.row)
+        this.props.clients.rowToEdit = this.props.row
+        this.props.clients.showPopup = true
     }
 
     render() {

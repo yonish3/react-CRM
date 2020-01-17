@@ -4,27 +4,13 @@ import Client from './Client'
 import Popup from './Popup'
 
 @inject ('clients')
+@observer
 class Clients extends Component {
-
-    constructor() {
-        super();
-        this.state = {
-          showPopup: false,
-          rowToEdit: {}
-        }
-      }
-
-    togglePopup = (row) => {
-        this.setState({
-          showPopup: !this.state.showPopup,
-          rowToEdit : row
-        });
-    }
 
     render() {
         return (
             <div>
-                {this.state.showPopup ? <Popup text='Close Me' rowToEdit={this.state.rowToEdit} togglePopup={this.togglePopup} /> : null }
+                {this.props.clients.showPopup ? <Popup text='Close Me' /> : null }
                 <table style={{width:"100%"}}>
                 <tr>
                     <th>ID</th>
@@ -37,7 +23,7 @@ class Clients extends Component {
                     <th>Country</th>
                 </tr>
 
-                {this.props.clients.clientsArray.map(r => <Client row={r} togglePopup={this.togglePopup} />)}
+                {this.props.clients.clientsArray.map(r => <Client row={r} />)}
 
                 </table>
             </div>
