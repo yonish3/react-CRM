@@ -2,8 +2,8 @@ import './App.css';
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import Clients from './Components/Clients'
-import Actions from './Components/Actions'
-import Analytics from './Components/Analytics'
+import Actions from './Components/Actions/Actions'
+import Analytics from './Components/Analytics/Analytics'
 
 
 class App extends Component {
