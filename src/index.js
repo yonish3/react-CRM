@@ -7,6 +7,7 @@ import { Provider } from 'mobx-react'
 import {Clients } from './Stores/Clients'
 
 
+
 const clients = new Clients()
 let data = require('./data.json')
 

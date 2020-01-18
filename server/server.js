@@ -1,9 +1,6 @@
 const express = require('express')
 const app = express()
 
-const Sequelize = require('sequelize')
-const sequelize = new Sequelize('mysql://root:3349@localhost/react-crm')
-
 const bodyParser = require('body-parser')
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -15,15 +12,8 @@ app.use(function (req, res, next) {
     next()
 })
 
-// sequelize.authenticate().then(() => {
-//     console.log('Connection has been established successfully.');
-// }).catch(err => {
-//     console.error('Unable to connect to the database:', err);
-// })
-
-
-// const api = require('./api')
-// app.use('/', api)
+const api = require('./api')
+app.use('/', api)
 
 const port = 4001
 app.listen(port, function () {
