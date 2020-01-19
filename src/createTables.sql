@@ -1,5 +1,72 @@
 USE react_crm;
 
+
+-- Start here
+
+-- DROP TABLE IF EXISTS clients,email_type,countries, owners;
+
+-- create table email_type (
+-- id int not null AUTO_INCREMENT primary key,
+-- e_type varchar(40) UNIQUE
+-- );
+
+-- create table countries (
+-- id int not null AUTO_INCREMENT primary key,
+-- country varchar(40) UNIQUE
+-- );
+
+-- create table owners (
+-- id int not null AUTO_INCREMENT primary key,
+-- o_name varchar(40) UNIQUE
+-- );
+
+-- create table clients (
+-- id int not null AUTO_INCREMENT primary key,
+-- c_name varchar(40),
+-- email varchar(40),
+-- firstContact datetime not null,
+-- sale_status boolean,
+
+-- email_type int,
+-- owner int,
+-- country int,
+
+-- foreign key (email_type) references email_type(id),
+-- foreign key (owner) references owners(id),
+-- foreign key (country) references countries(id) 
+-- );
+
+-- end here
+
+-- DELETE FROM email_type;
+-- DELETE FROM countries;
+-- DELETE FROM owners;
+-- DELETE FROM clients;
+
+-- alter table foemail_typeo AUTO_INCREMENT = 1
+-- alter table countries AUTO_INCREMENT = 1
+-- alter table owners AUTO_INCREMENT = 1
+-- alter table clients AUTO_INCREMENT = 1
+
+-- TRUNCATE TABLE email_type;
+-- TRUNCATE TABLE countries;
+-- TRUNCATE TABLE owners;
+-- TRUNCATE TABLE clients;
+
+-- DROP TABLE clients
+-- DROP TABLE email_type
+-- DROP TABLE countries
+-- DROP TABLE owners
+
+
+
+
+-- foreign key (email_type) references email_type(id),
+-- foreign key (owner) references owners(id),
+-- foreign key (country) references countries(id) 
+-- );
+
+
 -- create table clients (
 -- id int not null AUTO_INCREMENT primary key,
 -- c_name varchar(30),
@@ -23,6 +90,21 @@ USE react_crm;
 -- foreign key (country) references countries(country) 
 -- );
 
+-- create table clients (
+-- id int not null AUTO_INCREMENT primary key,
+-- c_name varchar(40),
+-- email varchar(40),
+-- firstContact datetime not null,
+-- sale_status boolean,
+
+-- email_type int,
+-- owner int,
+-- country int,
+
+-- foreign key (email_type) references email_type(id),
+-- foreign key (owner) references owners(id),
+-- foreign key (country) references countries(id) 
+-- );
 
 -- insert into clients (c_name,email,firstContact ) values ("testName", "testEmail", NOW());
 
@@ -33,8 +115,8 @@ USE react_crm;
 
 
 -- create table email_type (
--- et_id int not null auto_increment primary key,
--- e_type varchar(30) UNIQUE
+-- id int not null auto_increment primary key,
+-- e_type varchar(40) UNIQUE
 -- );
 
 -- create table email_type (
@@ -65,7 +147,7 @@ USE react_crm;
 
 -- create table owners (
 -- id int not null AUTO_INCREMENT primary key,
--- o_name varchar(30) UNIQUE
+-- o_name varchar(40) UNIQUE
 -- );
 
 -- create table owners (
@@ -91,7 +173,7 @@ USE react_crm;
 
 -- create table countries (
 -- id int not null AUTO_INCREMENT primary key,
--- country varchar(50) not null UNIQUE
+-- country varchar(40) UNIQUE
 -- );
 
 -- create table countries (
@@ -117,3 +199,13 @@ USE react_crm;
 -- )
 
 -- DROP TABLE client_country
+
+SELECT c.id, c.c_name, c.email, c.firstContact, c.sale_status, o.o_name, con.country, e.e_type
+FROM clients as c
+INNER JOIN owners as o
+on c.owner = o.id
+INNER JOIN countries as con
+on c.country = con.id
+INNER JOIN email_type as e
+on c.email_type = e.id
+ORDER BY c.id

@@ -2,12 +2,22 @@ import React, { Component } from '../../node_modules/react';
 import { observer, inject } from 'mobx-react'
 import Client from './Client'
 import Popup from './Popup'
+import axios from 'axios';
 
 @inject ('clients')
 @observer
 class Clients extends Component {
 
+    getClients = async () => {
+       const result = await axios.get(`http://localhost:4000/clients/`)
+       this.props.clients.clientsArray = result.data
+       console.log(this.props.clients.clientsArray)
+    }
+
     render() {
+
+        this.getClients()
+
         return (
             <div>
                 {this.props.clients.showPopup ? <Popup text='Close Me' /> : null }
